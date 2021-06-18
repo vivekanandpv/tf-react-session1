@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Operations from './Operations';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = { counter: 0 };
+
+  increment = () => {
+    this.setState((previousState) => {
+      if (previousState.counter < 20) {
+        return {
+          counter: previousState.counter + 1,
+        };
+      } else {
+        return previousState;
+      }
+    });
+  };
+
+  decrement = () => {
+    this.setState((previousState) => {
+      if (previousState.counter > 0) {
+        return {
+          counter: previousState.counter - 1,
+        };
+      } else {
+        return previousState;
+      }
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <div className='container p-5'>
+          <h3>Counter: {this.state.counter}</h3>
+
+          <hr />
+
+          <Operations increment={this.increment} decrement={this.decrement} />
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;
