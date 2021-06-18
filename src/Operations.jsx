@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Operations = (props) => {
+  console.log('Operations: render()');
   return (
     <>
       <div className='row'>

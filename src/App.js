@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import Demo from './Demo';
 import Operations from './Operations';
 
 class App extends Component {
-  state = { counter: 0 };
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0, showDemo: true };
+    console.log('App: constructor');
+  }
 
   increment = () => {
     this.setState((previousState) => {
@@ -28,7 +33,16 @@ class App extends Component {
     });
   };
 
+  toggle = () => {
+    this.setState((previous) => {
+      return {
+        showDemo: !previous.showDemo,
+      };
+    });
+  };
+
   render() {
+    console.log('App: render()');
     return (
       <>
         <div className='container p-5'>
@@ -37,6 +51,12 @@ class App extends Component {
           <hr />
 
           <Operations increment={this.increment} decrement={this.decrement} />
+
+          <button className='btn btn-primary' onClick={this.toggle}>
+            Toggle
+          </button>
+
+          {this.state.showDemo ? <Demo /> : null}
         </div>
       </>
     );
